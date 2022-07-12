@@ -1,0 +1,1 @@
+Fungsi Controller : untuk response/request dan serving data 
