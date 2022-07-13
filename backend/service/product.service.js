@@ -20,7 +20,8 @@ exports.createNewProduct = async(payload) => {
             product_name: payload.fields.product_name,
             product_description: payload.fields.product_description,
             price: payload.fields.price,
-            product_image: imageUpload.secure_url
+            product_image: imageUpload.secure_url,
+            
         }; 
 
         return await productRepository.save(product);

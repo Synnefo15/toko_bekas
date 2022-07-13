@@ -6,7 +6,7 @@ const formidable = require('express-formidable');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5005;
 
 // Load env variable
 dotenv.config();

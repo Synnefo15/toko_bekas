@@ -15,11 +15,11 @@ function Product(props) {
 	} = state;
 
 	const addToCartHandler = async (item) => {
-		const existItem = cartItems.find((x) => x._id === product._id);
+		const existItem = cartItems.find((x) => x.id === product.id);
 		const quantity = existItem ? existItem.quantity + 1 : 1;
-		const { data } = await axios.get(`/api/products/${item._id}`);
-		if (data.countInStock < quantity) {
-			window.alert('Sorry. Product is out of stock');
+		const { data } = await axios.get(`/products/${item.id}`);
+		if (data.stock < quantity) {
+			window.alert('Sorry. Product habis');
 			return;
 		}
 		ctxDispatch({
@@ -29,22 +29,22 @@ function Product(props) {
 	};
 
 	return (
-		<Card>
-			<Link to={`/product/${product.slug}`}>
-				<img src={product.image} className="card-img-top" alt={product.name} />
+		<Card className="cardEffect">
+			<Link to={`/product/${product.id}`}>
+				<img src={product.product_image} className="card-img-top cardImg" alt={product.name} />
 			</Link>
 			<Card.Body>
-				<Link to={`/product/${product.slug}`}>
+				<Link to={`/product/${product.id}`}>
 					<Card.Title>{product.name}</Card.Title>
 				</Link>
 				<Rating rating={product.rating} numReviews={product.numReviews} />
 				<Card.Text>${product.price}</Card.Text>
-				{product.countInStock === 0 ? (
+				{product.stock === 0 ? (
 					<Button variant="light" disabled className="text-danger">
 						Habis
 					</Button>
 				) : (
-					<Button onClick={() => addToCartHandler(product)}>Tambah</Button>
+					<Button className='tombol' onClick={() => addToCartHandler(product)}>Tambah</Button>
 				)}
 			</Card.Body>
 		</Card>

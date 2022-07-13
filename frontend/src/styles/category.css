@@ -1,0 +1,49 @@
+.find-category-text {
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.filter-text-button {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	padding: 14px 24px;
+	border-radius: 12px;
+	border: none;
+	margin-right: 16px;
+}
+
+.filter-text-button:hover {
+	color: #ffffff;
+}
+
+.filter-text-button:focus {
+	box-shadow: none;
+}
+
+.filter-icon {
+	margin-right: 8px;
+	height: 20px;
+	width: 20px;
+	position: relative;
+	top: -3px;
+}
+
+.filter-active {
+	color: #ffffff;
+	background-color: #7126b5;
+	margin-top: 10px;
+}
+
+.filter-inactive {
+	color: #3c3c3c;
+	background-color: #e2d4f0;
+	margin-top: 10px;
+}
+
+.filter-inactive:hover {
+	color: #3c3c3c;
+}

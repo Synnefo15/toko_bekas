@@ -122,20 +122,20 @@ export default function PlaceOrderScreen() {
 							<Card.Title>Items</Card.Title>
 							<ListGroup variant="flush">
 								{cart.cartItems.map((item) => (
-									<ListGroup.Item key={item._id}>
+									<ListGroup.Item key={item.id}>
 										<Row className="align-items-center">
 											<Col md={6}>
 												<img
-													src={item.image}
-													alt={item.name}
+													src={item.product_image}
+													alt={item.product_name}
 													className="img-fluid rounded img-thumbnail"
 												></img>{' '}
-												<Link to={`/product/${item.slug}`}>{item.name}</Link>
+												<Link to={`/product/${item.id}`}>{item.product_name}</Link>
 											</Col>
 											<Col md={3}>
 												<span>{item.quantity}</span>
 											</Col>
-											<Col md={3}>${item.price}</Col>
+											<Col md={3}>Rp {item.price}</Col>
 										</Row>
 									</ListGroup.Item>
 								))}
@@ -147,24 +147,24 @@ export default function PlaceOrderScreen() {
 				<Col md={4}>
 					<Card>
 						<Card.Body>
-							<Card.Title>Order Summary</Card.Title>
+							<Card.Title>Order Detail</Card.Title>
 							<ListGroup variant="flush">
 								<ListGroup.Item>
 									<Row>
 										<Col>Items</Col>
-										<Col>${cart.itemsPrice.toFixed(2)}</Col>
+										<Col>Rp {cart.itemsPrice.toFixed(2)}</Col>
 									</Row>
 								</ListGroup.Item>
 								<ListGroup.Item>
 									<Row>
 										<Col>Shipping</Col>
-										<Col>${cart.shippingPrice.toFixed(2)}</Col>
+										<Col>Rp {cart.shippingPrice.toFixed(2)}</Col>
 									</Row>
 								</ListGroup.Item>
 								<ListGroup.Item>
 									<Row>
-										<Col>Tax</Col>
-										<Col>${cart.taxPrice.toFixed(2)}</Col>
+										<Col>Pajak</Col>
+										<Col>Rp {cart.taxPrice.toFixed(2)}</Col>
 									</Row>
 								</ListGroup.Item>
 								<ListGroup.Item>
@@ -173,7 +173,7 @@ export default function PlaceOrderScreen() {
 											<strong> Order Total</strong>
 										</Col>
 										<Col>
-											<strong>${cart.totalPrice.toFixed(2)}</strong>
+											<strong>Rp{cart.totalPrice.toFixed(2)}</strong>
 										</Col>
 									</Row>
 								</ListGroup.Item>

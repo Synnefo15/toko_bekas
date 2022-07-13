@@ -1,0 +1,38 @@
+.banner {
+    margin-bottom: 40px;
+}
+
+.banner .box {
+    width: 968px !important;
+    height: 288px !important;
+    border-radius: 20px;
+    background-color: #fae6ff;
+    padding: 50px 0 0 80px !important;
+    /* background-image: url("../img/filter-bg1.png"), url("../img/bg1.png"); */
+    background-repeat: no-repeat;
+    background-position: right, right;
+}
+
+.banner .box p {
+    color: #151515;
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 700;
+}
+
+.banner .box .diskon-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+}
+.banner .box .diskon-angka {
+    color: #fa2c5a;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 36px;
+}
+
+.banner .box img {
+    width: 151px !important;
+    height: 135px !important;
+}

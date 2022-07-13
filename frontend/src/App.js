@@ -9,7 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Store } from './Store';
 import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/SigninScreen';
@@ -17,11 +17,29 @@ import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SignupScreen from './screens/SignupScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import NavbarComp from './components/Navbar';
+import axios from 'axios';
+import Footer from './components/Footer';
 
 function App() {
 	const { state, dispatch: ctxDispatch } = useContext(Store);
 	const { cart, userInfo } = state;
-
+	// % masih belum guna 
+	// const [users, setUsers] = useState([])
+	// const getUserName = async () => {
+	// 	try {
+	// 		const userData = await axios.get(`/users/profile/${id}`);
+	// 		setUsers(userData.data.data);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+		
+	// }
+	// useEffect(() => {
+	// 	getUserName();
+	// }, []);
+	// %  
+	
 	const signoutHandler = () => {
 		ctxDispatch({ type: 'USER_SIGNOUT' });
 		localStorage.removeItem('userInfo');
@@ -33,10 +51,14 @@ function App() {
 			<div className="d-flex flex-column site-container">
 				<ToastContainer position="bottom-center" limit={1} />
 				<header>
-					<Navbar bg="dark" variant="dark">
+					{/* <NavbarComp /> */}
+					<Navbar  className="p-3 navbar-dark bg-dark">
 						<Container>
 							<LinkContainer to="/">
-								<Navbar.Brand>amazona</Navbar.Brand>
+								<div className=''>
+									<i class="fas fa-store"></i>
+									<Navbar.Brand> Bekasmu</Navbar.Brand>
+								</div>
 							</LinkContainer>
 							<Nav className="me-auto">
 								<Link to="/cart" className="nav-link">
@@ -48,7 +70,7 @@ function App() {
 									)}
 								</Link>
 								{userInfo ? (
-									<NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+									<NavDropdown title={userInfo.user_name} id="basic-nav-dropdown">
 										<LinkContainer to="/profile">
 											<NavDropdown.Item>User Profile</NavDropdown.Item>
 										</LinkContainer>
@@ -72,7 +94,7 @@ function App() {
 				<main>
 					<Container className="mt-3">
 						<Routes>
-							<Route path="/product/:slug" element={<ProductScreen />} />
+							<Route path="/product/:id" element={<ProductScreen />} />
 							<Route path="/cart" element={<CartScreen />} />
 							<Route path="/signin" element={<SigninScreen />} />
 							<Route path="/signup" element={<SignupScreen />}></Route>
@@ -84,7 +106,8 @@ function App() {
 					</Container>
 				</main>
 				<footer>
-					<div className="text-center">All rights reserved</div>
+					{/* <div className="text-center bg-success">All rights reserved</div> */}
+					<Footer />
 				</footer>
 			</div>
 		</BrowserRouter>

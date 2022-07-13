@@ -16,11 +16,11 @@ main {
   background-color: #f0c040;
   color: #000000;
 }
-.products {
+/* .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
+} */
 
 .rating span {
   color: #ffc000;
@@ -30,10 +30,18 @@ main {
   border: 1px #404040 solid;
   margin: 1rem;
 }
-.product img {
+
+/* .product img {
   width: 100%;
   max-width: 400px;
+} */
+
+.cardImg{
+  height: 10rem;
+  /* width: 12rem; */
+  max-width: 100%;
 }
+
 .product-info {
   padding: 1rem;
 }
@@ -49,10 +57,12 @@ main {
 
 .tombol {
 	border: none;
+  background-color: #7126b5;
+  color: white;
 }
 
 .tombol:hover {
-	background-color: yellow;
+	background-color: violet;
 	font-weight: 700;
 	color: black;
 }
@@ -64,4 +74,13 @@ main {
 .checkoutSteps > div.active {
 	border-bottom: 0.2rem solid #f08000;
 	color: #f08000;
+}
+
+/* &---- Card  ---- */
+.cardEffect{
+    transition: all 0.5s ease;
+}
+.cardEffect:hover{
+    transform: scale(1.1);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
 }

@@ -2,12 +2,7 @@ import axios from 'axios';
 import { useContext, useEffect, useReducer } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { Row, 
-  Col, 
-  Card, 
-  ListGroup, 
-  Badge, 
-  Button} from 'react-bootstrap';
+import { Row, Col, Card, ListGroup, Badge, Button } from 'react-bootstrap';
 
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
@@ -32,7 +27,7 @@ const reducer = (state, action) => {
 function ProductScreen() {
 	const navigate = useNavigate();
 	const params = useParams();
-	const { slug } = params;
+	const { id } = params;
 
 	const [{ loading, error, product }, dispatch] = useReducer(reducer, {
 		product: [],
@@ -43,23 +38,23 @@ function ProductScreen() {
 		const fetchData = async () => {
 			dispatch({ type: 'FETCH_REQUEST' });
 			try {
-				const result = await axios.get(`/api/products/slug/${slug}`);
-				dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+				const result = await axios.get(`/products/${id}`);
+				dispatch({ type: 'FETCH_SUCCESS', payload: result.data.data });
 			} catch (err) {
 				dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
 			}
 		};
 		fetchData();
-	}, [slug]);
+	}, [id]);
 
 	const { state, dispatch: ctxDispatch } = useContext(Store);
 	const { cart } = state;
 	const addToCartHandler = async () => {
-		const existItem = cart.cartItems.find((x) => x._id === product._id);
+		const existItem = cart.cartItems.find((x) => x.id === product.id);
 		const quantity = existItem ? existItem.quantity + 1 : 1;
-		const { data } = await axios.get(`/api/products/${product._id}`);
-		if (data.countInStock < quantity) {
-			window.alert('Sorry. Product is out of stock');
+		const { data } = await axios.get(`/products/${product.id}`);
+		if (data.stock < quantity) {
+			window.alert('Sorry. Product habis');
 			return;
 		}
 		ctxDispatch({
@@ -74,17 +69,22 @@ function ProductScreen() {
 		<MessageBox variant="danger">{error}</MessageBox>
 	) : (
 		<div>
-			<Row>
-				<Col md={6}>
-					<img className="img-large" src={product.image} alt={product.name} style={{ "maxWidth":"100%" }}></img>
+			<Row className="mt-4 justify-content-between">
+				<Col md={6} className="me-3">
+					<img
+						className="img-large cardEffect rounded-1"
+						src={product.product_image}
+						alt={product.product_name}
+						style={{ maxWidth: '100%' }}
+					></img>
 				</Col>
-				<Col md={3}>
+				<Col md={4}>
 					<ListGroup variant="flush">
 						<ListGroup.Item>
 							<Helmet>
-								<title>{product.name}</title>
+								<title>{product.product_name}</title>
 							</Helmet>
-							<h1>{product.name}</h1>
+							<h1>{product.product_name}</h1>
 						</ListGroup.Item>
 						<ListGroup.Item>
 							<Rating rating={product.rating} numReviews={product.numReviews}></Rating>
@@ -92,7 +92,7 @@ function ProductScreen() {
 						<ListGroup.Item>Harga : Rp{product.price}</ListGroup.Item>
 						<ListGroup.Item>
 							Deskripsi:
-							<p>{product.description}</p>
+							<p>{product.product_description}</p>
 						</ListGroup.Item>
 					</ListGroup>
 					<ListGroup variant="flush">
@@ -106,27 +106,29 @@ function ProductScreen() {
 							<Row>
 								<Col>Status:</Col>
 								<Col>
-									{product.countInStock > 0 ? (
-										<Badge bg="success">In Stock</Badge>
+									{product.stock > 0 ? (
+										<Badge bg="success">Tersedia</Badge>
 									) : (
-										<Badge bg="danger">Unavailable</Badge>
+										<Badge bg="danger">Habis</Badge>
 									)}
 								</Col>
 							</Row>
 						</ListGroup.Item>
 
-						{product.countInStock > 0 && (
+						{product.stock > 0 && (
 							<ListGroup.Item>
-								<div className="d-grid">
-									<Button onClick={addToCartHandler} variant="primary">
-										Add to Cart
+								<div className="d-grid my-2">
+									<Button onClick={addToCartHandler} className="tombol">
+										Tambah
+									</Button>
+									<Button variant="" className="mt-3 tombol">
+										Tawar
 									</Button>
 								</div>
 							</ListGroup.Item>
 						)}
 					</ListGroup>
 				</Col>
-				
 			</Row>
 		</div>
 	);

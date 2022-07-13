@@ -50,12 +50,12 @@ export default function ShippingAddressScreen() {
 	return (
 		<div>
 			<Helmet>
-				<title>Shipping Address</title>
+				<title>Alamat Pengiriman</title>
 			</Helmet>
 
 			<Checkout step1 step2></Checkout>
 			<div className="container small-container">
-				<h1 className="my-3">Shipping Address</h1>
+				<h1 className="my-3">Alamat Pengiriman</h1>
 				<Form onSubmit={submitHandler}>
 					<Form.Group className="mb-3" controlId="fullName">
 						<Form.Label>Full Name</Form.Label>
@@ -70,7 +70,7 @@ export default function ShippingAddressScreen() {
 						<Form.Control value={city} onChange={(e) => setCity(e.target.value)} required />
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="postalCode">
-						<Form.Label>Postal Code</Form.Label>
+						<Form.Label>Provinsi</Form.Label>
 						<Form.Control
 							value={postalCode}
 							onChange={(e) => setPostalCode(e.target.value)}

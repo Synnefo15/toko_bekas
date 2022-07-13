@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet-async';
 import Product from '../components/Product';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import Banner from '../components/Homescreen/Banner';
+import CategoryList from '../components/Homescreen/CategoryList';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,8 +33,8 @@ function HomeScreen() {
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
-        const result = await axios.get('/api/products');
-        dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
+        const result = await axios.get('/products');
+        dispatch({ type: 'FETCH_SUCCESS', payload: result.data.data });
       } catch (err) {
         dispatch({ type: 'FETCH_FAIL', payload: err.message });
       }
@@ -41,27 +43,29 @@ function HomeScreen() {
     fetchData();
   }, []);
   return (
-    <div>
-      <Helmet>
-        <title>Bekasmu</title>
-      </Helmet>
-      <h1>Produk Kami</h1>
-      <div className="products">
-        {loading ? (
-          <LoadingBox />
-        ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
-          <Row>
-            {products.map((product) => (
-              <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
-                <Product product={product}></Product>
-              </Col>
-            ))}
-          </Row>
-        )}
-      </div>
-    </div>
-  );
+		<div>
+			<Helmet>
+				<title>Bekasmu</title>
+			</Helmet>
+			<Banner />
+			<CategoryList />
+			<h4 className="mt-3">Produk Kami</h4>
+			<div className="products justify-content-center align-items-center">
+				{loading ? (
+					<LoadingBox />
+				) : error ? (
+					<MessageBox variant="danger">{error}</MessageBox>
+				) : (
+					<Row className="justify-content-center mt-3">
+						{products.map((product) => (
+							<Col key={product.id} sm={5} md={4} lg={3} className="mb-3">
+								<Product product={product}></Product>
+							</Col>
+						))}
+					</Row>
+				)}
+			</div>
+		</div>
+	);
 }
 export default HomeScreen;
