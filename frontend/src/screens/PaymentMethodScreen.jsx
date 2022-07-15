@@ -13,7 +13,7 @@ export default function PaymentMethodScreen() {
 		cart: { shippingAddress, paymentMethod },
 	} = state;
 
-	const [paymentMethodName, setPaymentMethod] = useState(paymentMethod || 'PayPal');
+	const [paymentMethodName, setPaymentMethod] = useState(paymentMethod || 'BRI');
 
 	useEffect(() => {
 		if (!shippingAddress.address) {
@@ -38,20 +38,20 @@ export default function PaymentMethodScreen() {
 					<div className="mb-3">
 						<Form.Check
 							type="radio"
-							id="PayPal"
-							label="PayPal"
-							value="PayPal"
-							checked={paymentMethodName === 'PayPal'}
+							id="BRI"
+							label="BRI"
+							value="BRI"
+							checked={paymentMethodName === 'BRI'}
 							onChange={(e) => setPaymentMethod(e.target.value)}
 						/>
 					</div>
 					<div className="mb-3">
 						<Form.Check
 							type="radio"
-							id="Stripe"
-							label="Stripe"
-							value="Stripe"
-							checked={paymentMethodName === 'Stripe'}
+							id="BCA"
+							label="BCA"
+							value="BCA"
+							checked={paymentMethodName === 'BCA'}
 							onChange={(e) => setPaymentMethod(e.target.value)}
 						/>
 					</div>

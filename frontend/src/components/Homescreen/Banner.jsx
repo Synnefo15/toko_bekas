@@ -36,13 +36,14 @@ const Banner = () => {
 					<div className="box">
 						<div className="row text-start align-items-center">
 							<div className="col-5">
-								<p>Dummy 1</p>
+								<p>Harga Murah</p>
 								<p className="text-start">Banyak diskon!</p>
 								<p className="diskon-text">Diskon Hingga</p>
 								<p className="diskon-angka">60%</p>
 							</div>
-							<div className="col-7 align-middle banner-img bg-danger">
-								<p>tes</p>
+							<div className="col-7 bg-light rounded-pill">
+								{/* <img src="./images/p1.jpg" alt="" /> */}
+								<h4 className="p-3">Ayo Beli!!!</h4>
 								{/* <img className="d-none d-sm-block" src="../../assets/img/kado.png" alt="kado" /> */}
 							</div>
 						</div>
@@ -52,14 +53,13 @@ const Banner = () => {
 					<div className="box">
 						<div className="row text-start align-items-center ">
 							<div className="col-5">
-								<p>Dummy 2</p>
-								<p className="text-start">Banyak diskon!</p>
-								<p className="diskon-text">Diskon Hingga</p>
-								<p className="diskon-angka">60%</p>
+								<p>Barang Bervariasi</p>
+								<p className="text-start">5 Kategori</p>
+								<p className="diskon-text">Pilihan banyak</p>
 							</div>
-							<div className="col-7 align-middle banner-img bg-danger">
-								<p>tes</p>
-
+							<div className="col-7 bg-light rounded-pill">
+								{/* <img src="./images/p1.jpg" alt="" /> */}
+								<h4 className="p-3">Pesan Sekarang!!!</h4>
 								{/* <img className="d-none d-sm-block" src="../../assets/img/kado.png" alt="kado" /> */}
 							</div>
 						</div>
@@ -69,19 +69,14 @@ const Banner = () => {
 					<div className="box">
 						<div className="row text-start align-items-center">
 							<div className="col-5">
-								<p>Dummy 3</p>
-								<p className="text-start">Banyak diskon!</p>
-								<p className="diskon-text">Diskon Hingga</p>
-								<p className="diskon-angka">60%</p>
+								<p>Barang masih bagus</p>
+								<p className="text-start">Kualitas Terjamin</p>
+								<p className="diskon-text">Jika Rusak dapat dikembalikan</p>
 							</div>
-							<div className="col-7 align-middle banner-img bg-danger">
-								<p>tes</p>
-
-								{/* <img
-									className="d-none d-sm-block"
-									src={process.env.PUBLIC_URL + '/assets/img/kado.png'}
-									alt="kado"
-								/> */}
+							<div className="col-7 bg-light rounded-pill">
+								{/* <img src="./images/p1.jpg" alt="" /> */}
+								<h4 className="p-3">Pilih Barangmu...</h4>
+								{/* <img className="d-none d-sm-block" src="../../assets/img/kado.png" alt="kado" /> */}
 							</div>
 						</div>
 					</div>

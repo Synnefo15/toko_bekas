@@ -21,6 +21,7 @@ exports.createNewProduct = async(payload) => {
             product_description: payload.fields.product_description,
             price: payload.fields.price,
             product_image: imageUpload.secure_url,
+            stock : payload.fields.stock
             
         }; 
 
@@ -40,7 +41,8 @@ exports.updateProduct = async(payload, ids) => {
 					product_name: payload.fields.product_name,
 					product_description: payload.fields.product_description,
 					price: payload.fields.price,
-					product_image: imageUpload.secure_url
+					product_image: imageUpload.secure_url,
+					stock: payload.fields.stock,
 				};
 
         const productById = await productRepository.findById(ids);

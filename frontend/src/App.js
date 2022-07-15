@@ -17,9 +17,11 @@ import ShippingAddressScreen from './screens/ShippingAddressScreen';
 import SignupScreen from './screens/SignupScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import OrderScreen from './screens/OrderScreen';
 import NavbarComp from './components/Navbar';
 import axios from 'axios';
 import Footer from './components/Footer';
+import cssModule from './styles/Navbar.module.css'
 
 function App() {
 	const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -52,10 +54,11 @@ function App() {
 				<ToastContainer position="bottom-center" limit={1} />
 				<header>
 					{/* <NavbarComp /> */}
-					<Navbar  className="p-3 navbar-dark bg-dark">
-						<Container>
+					<Navbar className="p-3 navbar-light" style={{ backgroundColor: '#B8B8B8' }}>
+						<Container className='align-items-center align-content-center '>
+							
 							<LinkContainer to="/">
-								<div className=''>
+								<div className="">
 									<i class="fas fa-store"></i>
 									<Navbar.Brand> Bekasmu</Navbar.Brand>
 								</div>
@@ -87,6 +90,17 @@ function App() {
 										Sign In
 									</Link>
 								)}
+								<form className="d-flex ms-4" role="search">
+									<input
+										className={`form-control ${cssModule.pencarian} `}
+										type="search"
+										placeholder="Cari di sini ..."
+										aria-label="Search"
+									/>
+									<button className={` ${cssModule.tombol}`} type="submit">
+										<i className="fa-solid fa-magnifying-glass"></i>
+									</button>
+								</form>
 							</Nav>
 						</Container>
 					</Navbar>
@@ -101,6 +115,7 @@ function App() {
 							<Route path="/shipping" element={<ShippingAddressScreen />}></Route>
 							<Route path="/payment" element={<PaymentMethodScreen />}></Route>
 							<Route path="/placeorder" element={<PlaceOrderScreen />} />
+							<Route path='/order' element={<OrderScreen />}/>
 							<Route path="/" element={<HomeScreen />} />
 						</Routes>
 					</Container>

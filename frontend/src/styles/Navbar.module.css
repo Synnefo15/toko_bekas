@@ -1,0 +1,53 @@
+.navbarC {
+    height: 84px !important;
+}
+.btnMasuk {
+    background: #7126b5;
+    width: 105px;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 14px;
+    /* background-color: red; */
+}
+.navbarBrand {
+    background-color: #4b1979;
+    width: 100px;
+    height: 34px;
+}
+.pencarian {
+    width: 344px;
+    height: 48px;
+    padding: 12px 24px;
+    background: #eeeeee;
+    border: none;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    /* background-color: red; */
+}
+
+.tombol {
+    background: #eeeeee;
+    width: 100px;
+    border: none;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    /* border: 1px solid; */
+    font-size: 20px;
+    color: #8a8a8a;
+}
+
+@media only screen and (max-width: 768px) {
+    .pencarian {
+        width: 144px;
+        height: 48px;
+        padding: 12px 24px;
+
+    }
+
+     .tombol {
+        width: 100px;
+        font-size: 20px;
+    }
+}

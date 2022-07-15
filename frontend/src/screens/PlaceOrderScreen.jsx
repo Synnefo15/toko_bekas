@@ -42,7 +42,7 @@ export default function PlaceOrderScreen() {
 
 	const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.2345 => 123.23
 	cart.itemsPrice = round2(cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
-	cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
+	cart.shippingPrice = cart.itemsPrice < 25000 ? round2(10000) : round2(10);
 	cart.taxPrice = round2(0.15 * cart.itemsPrice);
 	cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
@@ -51,7 +51,7 @@ export default function PlaceOrderScreen() {
 					dispatch({ type: 'CREATE_REQUEST' });
 
 					const { data } = await Axios.post(
-						'/api/orders',
+						'/order',
 						{
 							orderItems: cart.cartItems,
 							shippingAddress: cart.shippingAddress,
@@ -60,17 +60,18 @@ export default function PlaceOrderScreen() {
 							shippingPrice: cart.shippingPrice,
 							taxPrice: cart.taxPrice,
 							totalPrice: cart.totalPrice,
+							user:userInfo.userInfo
 						},
-						{
-							headers: {
-								authorization: `Bearer ${userInfo.token}`,
-							},
-						}
+						// {
+						// 	headers: {
+						// 		authorization: `Bearer ${userInfo.token}`,
+						// 	},
+						// }
 					);
 					ctxDispatch({ type: 'CART_CLEAR' });
 					dispatch({ type: 'CREATE_SUCCESS' });
 					localStorage.removeItem('cartItems');
-					navigate(`/order/${data.order._id}`);
+					navigate(`/order/${data.order.id}`);
 				} catch (err) {
 					dispatch({ type: 'CREATE_FAIL' });
 					toast.error(getError(err));
@@ -99,9 +100,8 @@ export default function PlaceOrderScreen() {
 							<Card.Title>Shipping</Card.Title>
 							<Card.Text>
 								<strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-								<strong>Address: </strong> {cart.shippingAddress.address},
-								{cart.shippingAddress.city}, {cart.shippingAddress.postalCode},
-								{cart.shippingAddress.country}
+								<strong>Alamat: </strong> {cart.shippingAddress.address},{cart.shippingAddress.city}
+								, {cart.shippingAddress.province},{cart.shippingAddress.postalCode}
 							</Card.Text>
 							<Link to="/shipping">Edit</Link>
 						</Card.Body>
@@ -157,7 +157,7 @@ export default function PlaceOrderScreen() {
 								</ListGroup.Item>
 								<ListGroup.Item>
 									<Row>
-										<Col>Shipping</Col>
+										<Col>Ongkos Kirim</Col>
 										<Col>Rp {cart.shippingPrice.toFixed(2)}</Col>
 									</Row>
 								</ListGroup.Item>

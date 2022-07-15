@@ -63,7 +63,7 @@ export default function CartScreen() {
 										<Col md={3}>
 											<Link to={`/product/${item.id}`}>{item.product_name}</Link>
 
-											{/* <Button
+											<Button
 												onClick={() => updateCartHandler(item, item.quantity - 1)}
 												variant="light"
 												disabled={item.quantity === 1}
@@ -74,10 +74,10 @@ export default function CartScreen() {
 											<Button
 												variant="light"
 												onClick={() => updateCartHandler(item, item.quantity + 1)}
-												disabled={item.quantity === item.countInStock}
+												disabled={item.quantity === item.stock}
 											>
 												<i className="fas fa-plus-circle"></i>
-											</Button> */}
+											</Button>
 										</Col>
 										<Col md={3}>${item.price}</Col>
 										<Col md={2}>

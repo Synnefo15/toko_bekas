@@ -20,6 +20,7 @@ const userController = require('../controller/users.controller');
 const transController = require('../controller/transaksi.controller');
 const productController = require('../controller/products.controller.js');
 const categoryController = require('../controller/category.controller.js');
+const orderController = require('../controller/order.controller.js');
 
 
 // &---- Routes index ----
@@ -67,6 +68,9 @@ router.get('/users/transaksi/:id',transController.findTransByIdApi)
 router.post('/users/transaksi',transController.createNewTransApi)
 router.put('/users/transaksi/:id',transController.updateTransApi)
 router.delete('/users/transaksi/:id',transController.deleteTrans)
+
+// &---- order ----
+router.post('/order',orderController.createNewOrder)
 
 
 

@@ -40,6 +40,7 @@ db.transactions = require('./transactions')(sequelize,Sequelize);
 db.products = require('./products')(sequelize,Sequelize);
 db.notifications = require('./notifications')(sequelize,Sequelize);
 db.category = require('./category')(sequelize,Sequelize);
+db.order = require('./order')(sequelize, Sequelize);
 
 db.category.associate(db)
 db.products.associate(db)

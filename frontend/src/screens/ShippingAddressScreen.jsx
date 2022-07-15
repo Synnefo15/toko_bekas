@@ -22,7 +22,7 @@ export default function ShippingAddressScreen() {
 			navigate('/signin?redirect=/shipping');
 		}
 	}, [userInfo, navigate]);
-	const [country, setCountry] = useState(shippingAddress.country || '');
+	const [province, setprovince] = useState(shippingAddress.province || '');
 	const submitHandler = (e) => {
 		e.preventDefault();
 		ctxDispatch({
@@ -32,7 +32,7 @@ export default function ShippingAddressScreen() {
 				address,
 				city,
 				postalCode,
-				country,
+				province,
 			},
 		});
 		localStorage.setItem(
@@ -42,7 +42,7 @@ export default function ShippingAddressScreen() {
 				address,
 				city,
 				postalCode,
-				country,
+				province,
 			})
 		);
 		navigate('/payment');
@@ -62,24 +62,24 @@ export default function ShippingAddressScreen() {
 						<Form.Control value={fullName} onChange={(e) => setFullName(e.target.value)} required />
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="address">
-						<Form.Label>Address</Form.Label>
+						<Form.Label>Alamat Lengkap</Form.Label>
 						<Form.Control value={address} onChange={(e) => setAddress(e.target.value)} required />
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="city">
-						<Form.Label>City</Form.Label>
+						<Form.Label>Kota</Form.Label>
 						<Form.Control value={city} onChange={(e) => setCity(e.target.value)} required />
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="postalCode">
-						<Form.Label>Provinsi</Form.Label>
+						<Form.Label>Kode Pos</Form.Label>
 						<Form.Control
 							value={postalCode}
 							onChange={(e) => setPostalCode(e.target.value)}
 							required
 						/>
 					</Form.Group>
-					<Form.Group className="mb-3" controlId="country">
-						<Form.Label>Country</Form.Label>
-						<Form.Control value={country} onChange={(e) => setCountry(e.target.value)} required />
+					<Form.Group className="mb-3" controlId="province">
+						<Form.Label>province</Form.Label>
+						<Form.Control value={province} onChange={(e) => setprovince(e.target.value)} required />
 					</Form.Group>
 					<div className="mb-3">
 						<Button variant="primary" type="submit">
